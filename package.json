@@ -1,22 +1,22 @@
 {
-  "name": "goit-js-hw-12",
+  "name": "goit-js-hw-13",
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://stas-yushkov.github.io/goit-js-hw-12",
+  "homepage": "https://stas-yushkov.github.io/goit-js-hw-13",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-12/"
+    "build": "parcel build src/*.html --public-url /goit-js-hw-13/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stas-yushkov/goit-js-hw-12.git"
+    "url": "git+https://github.com/stas-yushkov/goit-js-hw-13.git"
   },
   "keywords": [],
   "author": "Stas Yushkov <stas.yushkov@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/stas-yushkov/goit-js-hw-12/issues"
+    "url": "https://github.com/stas-yushkov/goit-js-hw-13/issues"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.5",
