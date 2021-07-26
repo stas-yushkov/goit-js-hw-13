@@ -2,6 +2,11 @@ import './css/styles.css';
 
 import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix';
+import axios from 'axios';
+// axios.get('/users')
+//   .then(res => {
+//     console.log(res.data);
+//   });
 
 import { fetchCountries } from './js/fetchCountries';
 import { redrawInterface } from './js/redrawInterface';
