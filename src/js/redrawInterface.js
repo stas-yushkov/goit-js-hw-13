@@ -1,27 +1,27 @@
-import countriesHBS from '../partials/countries.hbs';
-import countryHBS from '../partials/country.hbs';
+// import countriesHBS from '../partials/countries.hbs';
+// import countryHBS from '../partials/country.hbs';
+import imageCardHBS from '../partials/imageCard.hbs';
+import { refs } from './refs';
 
-const refs = {
-  countryList: document.querySelector('.country-list'),
-  countryInfo: document.querySelector('.country-info'),
-};
+function redrawInterface(images) {
+  if (!images) {
+    // refs.countryInfo.innerHTML = '';
+    // refs.countryList.innerHTML = '';
+    refs.gallery.innerHTML = '';
 
-function redrawInterface(data) {
-  if (!data) {
-    refs.countryInfo.innerHTML = '';
-    refs.countryList.innerHTML = '';
     return;
   }
 
-  if (data.length > 1) {
-    refs.countryInfo.innerHTML = '';
-    refs.countryList.innerHTML = countriesHBS(data);
-    return;
-  }
+  // if (images.length > 1) {
+  //   refs.countryInfo.innerHTML = '';
+  //   refs.countryList.innerHTML = countriesHBS(images);
+  //   return;
+  // }
 
-  if (data) {
-    refs.countryInfo.innerHTML = countryHBS(data);
-    refs.countryList.innerHTML = '';
+  if (images) {
+    // refs.countryInfo.innerHTML = countryHBS(images);
+    // refs.countryList.innerHTML = '';
+    refs.gallery.innerHTML += images.map(image => imageCardHBS(image));
     return;
   }
 }

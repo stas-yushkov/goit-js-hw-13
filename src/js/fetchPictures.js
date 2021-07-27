@@ -44,6 +44,7 @@ async function fetchPictures(searchQuery) {
   };
   const resp = await axios(URL, paramsObj);
   console.log(resp);
+  return resp;
 }
 
 export { fetchPictures };
