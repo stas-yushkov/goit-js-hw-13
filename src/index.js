@@ -3,7 +3,7 @@ import './css/styles.scss';
 import { Notify } from 'notiflix';
 
 import { refs } from './js/refs';
-import { fetchPictures } from './js/fetchPictures';
+// import { fetchPictures } from './js/fetchPictures';
 import { redrawInterface } from './js/redrawInterface';
 
 import PixabayAPI from './js/pixabayAPI';
@@ -15,54 +15,64 @@ refs.loadMoreBtn.addEventListener('click', onLoadMore);
 const pixabayAPI = new PixabayAPI();
 const loadMoreBtn = new LoadMoreBtn({
   ref: refs.loadMoreBtn,
+  hide: true,
 });
-console.log('🚀 ~  pixabayAPI', pixabayAPI);
 
-loadMoreBtn.hide();
-
-//TODO: Словить ошибку промиса при непрогрузке ответа
-async function onSubmit(e) {
+function onSubmit(e) {
   e.preventDefault();
 
   const formData = new FormData(refs.form);
 
-  searchQuery = formData.get('searchQuery').trim().split(' ').join('+');
-  page = 1;
+  pixabayAPI.query = formData.get('searchQuery');
+  pixabayAPI.resetPage();
+
   redrawInterface();
 
-  if (!searchQuery) {
+  if (!pixabayAPI.query) {
     Notify.failure('Nothing loaded becose of empty search query');
     return;
   }
 
-  const picData = await fetchPictures(searchQuery, page, per_page);
+  pixabayAPI
+    .fetchPictures()
+    .then(picData => {
+      if (picData.images.length === 0) {
+        Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+        return;
+      }
+      pixabayAPI.totalImgs = picData.totalImages;
 
-  if (picData.images.length === 0) {
-    Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-    return;
-  }
+      Notify.success(`Hooray! We found ${pixabayAPI.totalImgs} images.`);
 
-  totalImages = picData.totalImages;
+      redrawInterface(picData.images);
 
-  Notify.success(`Hooray! We found ${totalImages} images.`);
-
-  redrawInterface(picData.images);
-
-  loadMoreBtn.show();
-
-  checkSearchResultEnd();
+      checkSearchResultEnd();
+    })
+    .catch(error => {
+      handlePromiseError(error);
+    });
 }
 
-async function onLoadMore(e) {
-  const picData = await fetchPictures(searchQuery, page, per_page);
+function onLoadMore(e) {
+  e.preventDefault();
 
-  redrawInterface(picData.images);
+  pixabayAPI
+    .fetchPictures()
+    .then(picData => {
+      redrawInterface(picData.images);
 
-  checkSearchResultEnd();
+      checkSearchResultEnd();
+    })
+    .catch(error => {
+      handlePromiseError(error);
+    });
 }
 
 function checkSearchResultEnd() {
-  const arePicturesOver = totalImages > per_page * page ? false : true;
+  loadMoreBtn.show();
+
+  const arePicturesOver =
+    pixabayAPI.totalImgs > pixabayAPI.perPage * pixabayAPI.page ? false : true;
 
   if (arePicturesOver) {
     //
@@ -71,5 +81,10 @@ function checkSearchResultEnd() {
     return;
   }
 
-  page += 1;
+  pixabayAPI.incrementPage();
+}
+
+function handlePromiseError(error) {
+  console.error('Oh, no, no, no...', error.message);
+  console.dir(error);
 }

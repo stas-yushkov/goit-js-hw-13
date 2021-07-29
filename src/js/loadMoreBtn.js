@@ -1,6 +1,7 @@
 export default class LoadMoreBtn {
-  constructor({ ref } = {}) {
+  constructor({ ref, hide } = {}) {
     this.button = ref;
+    hide ? this.hide() : this.show();
   }
 
   show() {
