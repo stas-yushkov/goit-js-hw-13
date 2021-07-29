@@ -1,11 +1,12 @@
 @import './visuallyHidden.scss';
 
 :root {
-  --header-bg-color: #0e0ee2;
+  --header-footer-bg-color: #0e0ee2;
   // --primary-text-color: #212121;
   // --card-set-gap: 20px;
   // --card-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
   //   0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  --header-footer-padding: 20px;
 }
 
 * {
@@ -45,8 +46,8 @@ span {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--header-bg-color);
-  padding: 5px;
+  background-color: var(--header-footer-bg-color);
+  padding: var(--header-footer-padding);
 }
 
 img {
@@ -61,4 +62,10 @@ img {
 }
 
 .photo-card .info-item {
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: var(--header-footer-padding);
 }
