@@ -16,6 +16,7 @@ refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 showLoadMoreBtn(false);
 
+//TODO: Словить ошибку промиса при непрогрузке ответа
 async function onSubmit(e) {
   e.preventDefault();
 
