@@ -6,15 +6,19 @@ import { refs } from './js/refs';
 import { fetchPictures } from './js/fetchPictures';
 import { redrawInterface } from './js/redrawInterface';
 
-const per_page = 40;
-let searchQuery = '';
-let page = 1;
-let totalImages = 0;
+import PixabayAPI from './js/pixabayAPI';
+import LoadMoreBtn from './js/loadMoreBtn';
 
 refs.form.addEventListener('submit', onSubmit);
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
-showLoadMoreBtn(false);
+const pixabayAPI = new PixabayAPI();
+const loadMoreBtn = new LoadMoreBtn({
+  ref: refs.loadMoreBtn,
+});
+console.log('🚀 ~  pixabayAPI', pixabayAPI);
+
+loadMoreBtn.hide();
 
 //TODO: Словить ошибку промиса при непрогрузке ответа
 async function onSubmit(e) {
@@ -44,7 +48,7 @@ async function onSubmit(e) {
 
   redrawInterface(picData.images);
 
-  showLoadMoreBtn(true);
+  loadMoreBtn.show();
 
   checkSearchResultEnd();
 }
@@ -63,21 +67,9 @@ function checkSearchResultEnd() {
   if (arePicturesOver) {
     //
     Notify.failure("We're sorry, but you've reached the end of search results.");
-    showLoadMoreBtn(false);
+    loadMoreBtn.hide();
     return;
   }
 
   page += 1;
-}
-
-function showLoadMoreBtn(show) {
-  if (show) {
-    //
-    refs.loadMoreBtn.classList.remove('visually-hidden');
-    // refs.footer.classList.remove('visually-hidden');
-  } else {
-    //
-    refs.loadMoreBtn.classList.add('visually-hidden');
-    // refs.footer.classList.add('visually-hidden');
-  }
 }
