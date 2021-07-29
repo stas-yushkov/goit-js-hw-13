@@ -8,16 +8,7 @@ function redrawInterface(images) {
   }
 
   if (images) {
-    // refs.gallery.innerHTML += images.map(image => imageCardHBS(image)).join('');
-    refs.gallery.append(
-      ...images.map(image => {
-        const newDiv = document.createElement('div');
-        newDiv.innerHTML = imageCardHBS(image);
-        newDiv.classList.add('photo-card');
-
-        return newDiv;
-      }),
-    );
+    refs.gallery.insertAdjacentHTML('beforeend', images.map(image => imageCardHBS(image)).join(''));
     return;
   }
 }

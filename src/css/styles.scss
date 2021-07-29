@@ -21,6 +21,7 @@ body {
   line-height: 1.5;
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
 #search-box {
@@ -43,9 +44,9 @@ span {
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
   background-color: var(--header-footer-bg-color);
   padding: var(--header-footer-padding);
 }
@@ -64,8 +65,13 @@ img {
 .photo-card .info-item {
 }
 
-.footer {
-  display: flex;
-  justify-content: center;
-  padding: var(--header-footer-padding);
-}
+// .footer {
+//   display: flex;
+//   justify-content: center;
+//   padding: var(--header-footer-padding);
+//   background-color: var(--header-footer-bg-color);
+
+//   // position: relative;
+//   // bottom: 0;
+//   // width: 100%;
+// }

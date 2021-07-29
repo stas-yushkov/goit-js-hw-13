@@ -74,8 +74,10 @@ function showLoadMoreBtn(show) {
   if (show) {
     //
     refs.loadMoreBtn.classList.remove('visually-hidden');
+    // refs.footer.classList.remove('visually-hidden');
   } else {
     //
     refs.loadMoreBtn.classList.add('visually-hidden');
+    // refs.footer.classList.add('visually-hidden');
   }
 }
