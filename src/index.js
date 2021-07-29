@@ -32,8 +32,6 @@ async function onSubmit(e) {
 
   const picData = await fetchPictures(searchQuery, page, per_page);
 
-  console.log('picData ', picData);
-
   if (picData.images.length === 0) {
     Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     return;
@@ -43,7 +41,7 @@ async function onSubmit(e) {
 
   Notify.success(`Hooray! We found ${totalImages} images.`);
 
-  await redrawInterface(picData.images);
+  redrawInterface(picData.images);
 
   showLoadMoreBtn(true);
 
@@ -53,30 +51,15 @@ async function onSubmit(e) {
 async function onLoadMore(e) {
   const picData = await fetchPictures(searchQuery, page, per_page);
 
-  // const mappedHits = picData.images.map(
-  //   ({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {
-  //     return { webformatURL, largeImageURL, tags, likes, views, comments, downloads };
-  //   },
-  // );
+  redrawInterface(picData.images);
 
-  await redrawInterface(picData.images);
-
-  console.log('arePicturesOver()', arePicturesOver());
   checkSearchResultEnd();
 }
 
-function arePicturesOver() {
-  // if (totalImages > per_page * page) {
-  //   return false;
-  // } else {
-  //   return true;
-  // }
-
-  return totalImages > per_page * page ? false : true;
-}
-
 function checkSearchResultEnd() {
-  if (arePicturesOver()) {
+  const arePicturesOver = totalImages > per_page * page ? false : true;
+
+  if (arePicturesOver) {
     //
     Notify.failure("We're sorry, but you've reached the end of search results.");
     showLoadMoreBtn(false);
