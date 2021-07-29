@@ -8,7 +8,7 @@ function redrawInterface(images) {
   }
 
   if (images) {
-    refs.gallery.innerHTML += images.map(image => imageCardHBS(image));
+    refs.gallery.innerHTML += images.map(image => imageCardHBS(image)).join('');
     return;
   }
 }
