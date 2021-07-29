@@ -41,20 +41,6 @@ span {
   font-weight: 400;
 }
 
-.country-name {
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 1.8;
-}
-
-.country-list {
-  margin-top: 8px;
-  margin-bottom: 0;
-  list-style: none;
-  padding-left: 0;
-  line-height: 1.8;
-}
-
 .header {
   display: flex;
   align-items: center;
@@ -67,4 +53,12 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+.photo-card .info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.photo-card .info-item {
 }
