@@ -1,8 +1,4 @@
 import axios from 'axios';
-// import dotenv from 'dotenv';
-
-// dotenv.config();
-
 const key = process.env.PIXABAY_API_KEY;
 
 const imageType = 'photo';
