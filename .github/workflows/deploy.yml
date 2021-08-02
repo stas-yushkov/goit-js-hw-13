@@ -15,10 +15,11 @@ jobs:
         run: |
           npm ci
           npm run build
+        env:
+        PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
           folder: dist
