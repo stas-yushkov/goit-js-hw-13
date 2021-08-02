@@ -1,6 +1,10 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
 
-const key = '22654483-4e0bcca85732e009257bb92c7';
+dotenv.config();
+
+const key = process.env.PIXABAY_API_KEY;
+
 const imageType = 'photo';
 const orientation = 'horizontal';
 const safesearch = 'true';

@@ -3,7 +3,6 @@ import './css/styles.scss';
 import { Notify } from 'notiflix';
 
 import { refs } from './js/refs';
-// import { fetchPictures } from './js/fetchPictures';
 import { redrawInterface } from './js/redrawInterface';
 
 import PixabayAPI from './js/pixabayAPI';
@@ -75,7 +74,6 @@ function checkSearchResultEnd() {
     pixabayAPI.totalImgs > pixabayAPI.perPage * pixabayAPI.page ? false : true;
 
   if (arePicturesOver) {
-    //
     Notify.failure("We're sorry, but you've reached the end of search results.");
     loadMoreBtn.hide();
     return;
