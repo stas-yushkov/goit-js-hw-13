@@ -1,10 +1,6 @@
 import axios from 'axios';
-// import dotenv from 'dotenv';
-
-// dotenv.config();
 
 const key = process.env.PIXABAY_API_KEY;
-console.log('🚀 ~ key', key);
 
 const imageType = 'photo';
 const orientation = 'horizontal';
