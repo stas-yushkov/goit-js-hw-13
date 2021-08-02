@@ -85,6 +85,7 @@ function checkSearchResultEnd() {
 }
 
 function handlePromiseError(error) {
-  console.error('Oh, no, no, no...', error.message);
+  console.error('Oh, no, no, no...', error);
+  console.error(error.message);
   console.dir(error);
 }
