@@ -1,5 +1,6 @@
 import axios from 'axios';
 const key = process.env.PIXABAY_API_KEY;
+console.log('🚀 ~ key', key);
 
 const imageType = 'photo';
 const orientation = 'horizontal';
